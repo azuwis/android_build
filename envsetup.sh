@@ -1733,8 +1733,10 @@ function echochanged()
         # Don't send files that are not in /system.
         if ! echo $TARGET | egrep '^system\/' > /dev/null ; then
             continue
+        elif echo $TARGET | egrep '^system\/(usr\/share\/vim|etc\/(nano|bash))\/' > /dev/null; then
+            continue
         else
-            echo "Changed: $FILE -> $TARGET"
+            echo "adb push $FILE $TARGET"
         fi
     done
     rm -f .log
