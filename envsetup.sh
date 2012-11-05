@@ -1776,6 +1776,27 @@ function repodiff() {
       'echo "$REPO_PATH ($REPO_REMOTE)"; git diff ${diffopts} 2>/dev/null ;'
 }
 
+function repolog() {
+    if [ x"$1" == x"sync" ]; then
+        repo sync -n -j16  2>&1 | tee .synclog
+    else
+        cat .synclog |  while read a b c
+        do
+            if [ x"$a" == x"From" ]; then
+                project=`echo $b | sed 's/git:\/\/[^/]*\///'`
+                dir=`repo list | awk -F': ' '{if ($2 == "'$project'") print $1}'`
+            elif [ x"$b" == x"cm-10.1" -o x"$b" == x"jb" ]; then
+                change=$a
+                pushd $dir >&/dev/null
+                echo -e "\033[32mPROJECT: $dir"
+                git log --stat --color=always $change "$@"
+                popd >&/dev/null
+                echo
+            fi
+        done | less -R
+    fi
+}
+
 # Credit for color strip sed: http://goo.gl/BoIcm
 function dopush()
 {
