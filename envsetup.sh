@@ -1957,3 +1957,6 @@ unset f
 addcompletions
 
 export ANDROID_BUILD_TOP=$(gettop)
+
+export KBUILD_BUILD_USER=jenkins
+export KBUILD_BUILD_HOST=cyanogenmod
