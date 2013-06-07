@@ -2192,3 +2192,6 @@ check_bash_version && {
 }
 
 export ANDROID_BUILD_TOP=$(gettop)
+
+export KBUILD_BUILD_USER=jenkins
+export KBUILD_BUILD_HOST=cyanogenmod
