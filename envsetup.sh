@@ -1778,9 +1778,9 @@ function repodiff() {
 
 function repolog() {
     if [ x"$1" == x"sync" ]; then
-        repo sync -n -j16  2>&1 | tee .synclog
+        repo sync -n -j16  2>&1 | tee $OUT/.synclog
     else
-        cat .synclog |  while read a b c
+        cat $OUT/.synclog |  while read a b c
         do
             if [ x"$a" == x"From" ]; then
                 project=`echo $b | sed 's/git:\/\/[^/]*\///'`
