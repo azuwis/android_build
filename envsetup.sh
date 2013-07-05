@@ -691,7 +691,7 @@ function eat()
             done
             echo "Device Found.."
         fi
-    if (adb shell cat /system/build.prop | grep -q "ro.cm.device=$CM_BUILD");
+        if (adb shell cat /system/build.prop | grep -q "ro.cm.device=$CM_BUILD") || (adb shell cat /system/build.prop | grep -q "ro.cm.device=generic");
     then
         # if adbd isn't root we can't write to /cache/recovery/
         adb root
@@ -1813,7 +1813,7 @@ function dopush()
         echo "Device Found."
     fi
 
-    if (adb shell cat /system/build.prop | grep -q "ro.cm.device=$CM_BUILD");
+    if (adb shell cat /system/build.prop | grep -q "ro.cm.device=$CM_BUILD") || (adb shell cat /system/build.prop | grep -q "ro.cm.device=generic");
     then
     adb root &> /dev/null
     sleep 0.3
