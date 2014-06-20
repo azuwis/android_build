@@ -104,7 +104,8 @@ PRODUCT_PACKAGES += \
     vdc \
     vold \
     webview \
-    wm
+    wm \
+    tcpdump
 
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/embedded.mk)
